@@ -121,16 +121,21 @@ section {
    HERO / INICIO
 ======================= */
 .hero {
+  display: flex;                 /* Activamos Flexbox */
+  flex-direction: column;        /* Los elementos en columna */
+  justify-content: center;       /* Centrado vertical */
+  align-items: center;           /* Centrado horizontal */
+  
   text-align: center;
-  padding-top: 120px;
+  padding: 0 20px;               /* Pequeño padding lateral */
   min-height: 80vh;
-
+  
   /* fondo imagen */
   background-image: url("https://i.pinimg.com/originals/cf/ee/3e/cfee3e7774dcc325b30bc82df91bf028.gif");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-
+  
   position: relative;
 }
 
@@ -161,6 +166,10 @@ section {
 
 .buttons {
   margin-top: 20px;
+  display: flex;             /* Para que los botones estén en fila */
+  gap: 10px;                 /* Espacio entre ellos */
+  flex-wrap: wrap;           /* Para que no se desborden en pantallas pequeñas */
+  justify-content: center;   /* Centrado horizontal */
 }
 
 .primary {
@@ -169,8 +178,12 @@ section {
   padding: 12px 25px;
   border-radius: 25px;
   color: white;
-  margin-right: 10px;
   cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.primary:hover {
+  transform: scale(1.05);
 }
 
 .outline {
@@ -180,6 +193,11 @@ section {
   border-radius: 25px;
   color: white;
   cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.outline:hover {
+  transform: scale(1.05);
 }
 
 /* =======================
@@ -431,10 +449,15 @@ section {
 
 /* GRID */
 .grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* Centra todas las cartas horizontalmente */
+  gap: 30px; /* Espacio entre cartas */
   margin-top: 50px;
+}
+
+.project-card {
+  flex: 0 1 320px; /* Cada carta ocupa hasta 320px pero se ajusta si hay menos espacio */
 }
 
 /* CARD */
@@ -554,6 +577,35 @@ section {
   box-shadow: 0 8px 20px rgba(37, 99, 235, 0.4);
 }
 
+.project-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Empuja contenido hacia arriba y botón abajo */
+  background: linear-gradient(
+    145deg,
+    rgba(15, 23, 42, 0.9),
+    rgba(2, 6, 23, 0.9)
+  );
+  padding: 20px;
+  border-radius: 20px;
+  border: 1px solid var(--borde);
+  text-align: left;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  min-height: 450px; /* puedes ajustar según el tamaño que quieras */
+}
+
+.project-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.project-content p {
+  flex-grow: 1; /* La descripción ocupa todo el espacio disponible */
+  margin: 10px 0;
+  color: #cbd5f5;
+}
+
 /* =======================
    ANIMACIÓN
 ======================= */
@@ -641,6 +693,23 @@ section {
 .btn-contact:hover {
   transform: scale(1.05);
   box-shadow: 0 10px 25px rgba(37, 99, 235, 0.4);
+}
+
+/* Agrupa los botones y les da espacio */
+.btn-group {
+  display: flex;
+  flex-direction: column; /* vertical por defecto */
+  gap: 20px; /* espacio entre botones */
+  align-items: center;
+  margin-top: 15px;
+}
+
+/* Para pantallas más grandes, los ponemos uno al lado del otro */
+@media (min-width: 600px) {
+  .btn-group {
+    flex-direction: row; /* horizontal */
+    justify-content: center;
+  }
 }
 
 /* =======================
